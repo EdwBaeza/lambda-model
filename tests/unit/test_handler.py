@@ -8,8 +8,6 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 parentdir = f"{os.path.dirname(parentdir)}/src"
 sys.path.insert(0, parentdir)
-# currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-# sys.path.insert(0, f"{currentdir}/src")
 from src import app
 
 
@@ -75,6 +73,3 @@ def test_lambda_handler(apigw_event, mocker):
     data = json.loads(ret["body"])
 
     assert ret["statusCode"] == 200, data
-    # assert "message" in ret["body"]
-    # assert data["message"] == "hello world"
-    # assert "location" in data.dict_keys()
