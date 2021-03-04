@@ -2,7 +2,7 @@
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
-- hello_world - Code for the application's Lambda function and Project Dockerfile.
+- lambda-model - Code for the application's Lambda function and Project Dockerfile.
 - events - Invocation events that you can use to invoke the function.
 - tests - Unit tests for the application code. 
 - template.yaml - A template that defines the application's AWS resources.
@@ -24,7 +24,7 @@ You may need the following for local testing.
 To build and deploy your application for the first time, run the following in your shell:
 
 ```bash
-sam build
+sam build --use-container
 sam deploy --guided
 ```
 
@@ -53,25 +53,28 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-lambda-model$ sam local invoke HelloWorldFunction --event events/event.json
+lambda-model$ sam local invoke LambdaModelFunction --event events/event.json
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
 
 ```bash
 lambda-model$ sam local start-api
-lambda-model$ curl http://localhost:3000/
+lambda-model$ curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{ "temp": "55", "vibration": "37", "current": "76", "noise": "23"}' \
+  http://localhost:3000/inferences
 ```
 
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
 
 ```yaml
       Events:
-        HelloWorld:
+        LambdaModel:
           Type: Api
           Properties:
-            Path: /hello
-            Method: get
+            Path: /inferences
+            Method: post
 ```
 
 ## Add a resource to your application
@@ -84,7 +87,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-lambda-model$ sam logs -n HelloWorldFunction --stack-name lambda-model --tail
+lambda-model$ sam logs -n LambdaModelFunction --stack-name lambda-model --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
