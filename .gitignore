@@ -194,6 +194,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+config.yaml
 
 # Spyder project settings
 .spyderproject
@@ -209,6 +210,7 @@ venv.bak/
 .mypy_cache/
 
 ### VisualStudioCode ###
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -240,5 +242,7 @@ $RECYCLE.BIN/
 # Build folder
 
 */build/*
+.aws-sam
+.aws-sam/*
 
 # End of https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode

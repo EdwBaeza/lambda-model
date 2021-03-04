@@ -14,17 +14,17 @@ Resources:
     Properties:
       Environment:
         Variables:
-          Bucket: Noexiste
+          Bucket: extras-lambdas
       PackageType: Image
       Events:
         LambdaModel:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /calculate
-            Method: get
+            Path: /inferences
+            Method: post
     Metadata:
       DockerTag: python3.6-v1
-      DockerContext: ./code
+      DockerContext: ./src
       Dockerfile: Dockerfile
 
 

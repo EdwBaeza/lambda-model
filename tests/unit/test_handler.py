@@ -1,8 +1,16 @@
 import json
+import os
+import sys
+import inspect
 
 import pytest
-
-from hello_world import app
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+parentdir = f"{os.path.dirname(parentdir)}/src"
+sys.path.insert(0, parentdir)
+# currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+# sys.path.insert(0, f"{currentdir}/src")
+from src import app
 
 
 @pytest.fixture()
@@ -10,7 +18,7 @@ def apigw_event():
     """ Generates API GW Event"""
 
     return {
-        "body": '{ "test": "body"}',
+        "body": '{ "temp": "88","vibration": "230","current": "11","noise": "83" }',
         "resource": "/{proxy+}",
         "requestContext": {
             "resourceId": "123456",
@@ -61,13 +69,12 @@ def apigw_event():
         "path": "/examplepath",
     }
 
-
 def test_lambda_handler(apigw_event, mocker):
 
     ret = app.lambda_handler(apigw_event, "")
     data = json.loads(ret["body"])
 
-    assert ret["statusCode"] == 200
-    assert "message" in ret["body"]
-    assert data["message"] == "hello world"
+    assert ret["statusCode"] == 200, data
+    # assert "message" in ret["body"]
+    # assert data["message"] == "hello world"
     # assert "location" in data.dict_keys()

@@ -1,0 +1,4 @@
+requests
+scikit-learn==0.24.1
+pandas
+boto3==1.17.20

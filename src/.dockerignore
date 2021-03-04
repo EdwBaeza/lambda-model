@@ -1,0 +1,9 @@
+## Unnecessary files
+config.yaml.local
+Dockerfile
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
