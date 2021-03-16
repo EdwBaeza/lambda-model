@@ -1,7 +1,7 @@
 {
-  "body": "{\"message\": \"hello world\"}",
+  "body": "{\"temp\":\"55\",\"vibration\":\"37\",\"current\":\"76\",\"noise\":\"23\"}",
   "resource": "/{proxy+}",
-  "path": "/path/to/resource",
+  "path": "/inferences",
   "httpMethod": "POST",
   "isBase64Encoded": false,
   "queryStringParameters": {
@@ -53,7 +53,7 @@
       "userAgent": "Custom User Agent String",
       "user": null
     },
-    "path": "/prod/path/to/resource",
+    "path": "/inferences",
     "resourcePath": "/{proxy+}",
     "httpMethod": "POST",
     "apiId": "1234567890",

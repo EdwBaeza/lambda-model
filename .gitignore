@@ -245,4 +245,4 @@ $RECYCLE.BIN/
 .aws-sam
 .aws-sam/*
 
-# End of https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode
+ecr_output.json
