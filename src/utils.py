@@ -29,6 +29,6 @@ def download_file_from_s3(path):
         path
     )
 
-def normalize_features(X):
-    transformer = preprocessing.Normalizer().fit(X)
-    return transformer.transform(X).tolist()
+def normalize_features(data):
+    transformer = preprocessing.Normalizer().fit(data)
+    return transformer.transform(data).tolist()
